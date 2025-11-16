@@ -34,13 +34,6 @@ vm/setup-fs:
 	       mkdir -p /mnt/boot && \
 	       mount /dev/disk/by-label/NIXBOOT /mnt/boot; \
 	       nixos-generate-config --root /mnt; \
-	       sed --in-place '/system\.stateVersion = .*/a\n \
-			nix.package = pkgs.nixVersions.latest;\n \
-			nix.extraOptions = \"experimental-features = nix-command flakes\";\n \
-  			services.openssh.enable = true;\n \
-			services.openssh.settings.PasswordAuthentication = true;\n \
-			services.openssh.settings.PermitRootLogin = \"yes\";\n \
-			users.users.root.initialPassword = \"root\";\n \
-		' /mnt/etc/nixos/configuration.nix; \
+	       sed --in-place 's/#\ boot.loader.grub.device/boot.loader.grub.device/g' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd && reboot; \
 	"

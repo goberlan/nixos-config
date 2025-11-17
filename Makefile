@@ -19,13 +19,17 @@ SSH_OPTIONS=-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o Strict
 # and just set the password of the root user to "root". This will install
 # NixOS. After installing NixOS, you must reboot and set the root password
 # for the next step.
+# Some notes:
+# --script makes parted not prompt user
+# --flake in nixos-generate-config will setup if i want to use flakes (which i probably do)
+
 vm/setup-fs:
 	ssh $(SSH_OPTIONS) -p$(NIXPORT) root@$(NIXADDR) " \
-  	       parted /dev/sda --script \
+	       parted /dev/sda --script \
 		  mklabel gpt \
-		  mkpart ESP fat32 1MiB 501MiB \
+		  mkpart ESP fat32 1MB 512MB \
 		  set 1 esp on \
-		  mkpart primary ext4 501MiB 100% && \
+		  mkpart root ext4 512MB 100% && \
 	       udevadm settle && \
 	       mkfs.fat -F 32 /dev/sda1 -n NIXBOOT && \
 	       mkfs.ext4 /dev/sda2 -L NIXROOT && \
@@ -33,7 +37,14 @@ vm/setup-fs:
 	       mount /dev/disk/by-label/NIXROOT /mnt && \
 	       mkdir -p /mnt/boot && \
 	       mount /dev/disk/by-label/NIXBOOT /mnt/boot; \
-	       nixos-generate-config --root /mnt; \
-	       sed --in-place 's/#\ boot.loader.grub.device/boot.loader.grub.device/g' /mnt/etc/nixos/configuration.nix; \
-		nixos-install --no-root-passwd && reboot; \
+	       nixos-generate-config --root /mnt --flake; \
+		sed --in-place '/system\.stateVersion = .*/a \
+			nix.package = pkgs.nixVersions.latest;\n \
+			services.openssh.enable = true;\n \
+			services.openssh.settings.PasswordAuthentication = true;\n \
+			services.openssh.settings.PermitRootLogin = \"yes\";\n \
+			users.users.root.initialPassword = \"root\";\n \
+		' /mnt/etc/nixos/configuration.nix; \
+		nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos && reboot; \
 	"
+# The nixos directory for the flake may not work.. but i get a warning/error when i use nixos/flake.nix#nixos... not sure...

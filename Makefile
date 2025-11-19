@@ -1,5 +1,6 @@
+# CHANGE ME
 NIXADDR ?= localhost
-# This can be whatever you want it to be when you start the qemu VM
+# This can be whatever you want it to be when you start the qemu VM (it just needs to match what you use in the VM)
 NIXPORT ?= 6022
 NIXUSER ?= wj
 
@@ -7,23 +8,19 @@ NIXUSER ?= wj
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 # The name of the nixosConfiguration in the flake
-NIXNAME ?= nix-test
+NIXNAME ?= TODO
 
 # SSH options that are used. These aren't meant to be overridden but are
 # reused a lot so we just store them up here.
 SSH_OPTIONS=-o PubkeyAuthentication=no -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 
-# TODO: Add a way to save secrets
-
-# bootstrap a brand new VM. The VM should have NixOS ISO on the CD drive
-# and just set the password of the root user to "root". This will install
-# NixOS. After installing NixOS, you must reboot and set the root password
-# for the next step.
+# !!! PLZ READ !!!
+# When your VM boots up, you need to run `sudo su` then `passwd` to create a password for `root`. You then use this password for the ssh command below.
 # Some notes:
-# --script makes parted not prompt user
-# --flake in nixos-generate-config will setup if i want to use flakes (which i probably do)
+# --script makes `parted` not prompt user
+# `--flake` in nixos-generate-config will setup if i want to use flakes (which i probably do)
 
-vm/setup-fs:
+vm/bootstrap:
 	ssh $(SSH_OPTIONS) -p$(NIXPORT) root@$(NIXADDR) " \
 	       parted /dev/sda --script \
 		  mklabel gpt \
@@ -47,4 +44,3 @@ vm/setup-fs:
 		' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos && reboot; \
 	"
-# The nixos directory for the flake may not work.. but i get a warning/error when i use nixos/flake.nix#nixos... not sure...

@@ -8,7 +8,7 @@ NIXUSER ?= wj
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 # The name of the nixosConfiguration in the flake
-NIXNAME ?= TODO
+NIXNAME ?= desktop-amd-x86
 
 # SSH options that are used. These aren't meant to be overridden but are
 # reused a lot so we just store them up here.
@@ -44,3 +44,20 @@ vm/bootstrap:
 		' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd --flake /mnt/etc/nixos#nixos && reboot; \
 	"
+vm/getnixed:
+	NIXUSER=root $(MAKE) vm/copy
+
+vm/copy:
+	rsync -av -e 'ssh $(SSH_OPTIONS) -p$(NIXPORT)' \
+		--exclude='.git/' \
+		--exclude='.gitignore' \
+		--rsync-path="sudo rsync" \
+		$(MAKEFILE_DIR)/ $(NIXUSER)@$(NIXADDR):/nix-config
+
+# run the nixos-rebuild switch command. This does NOT copy files so you
+# have to run vm/copy before.
+vm/switch:
+	ssh $(SSH_OPTIONS) -p$(NIXPORT) $(NIXUSER)@$(NIXADDR) " \
+		sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake \"/nix-config#${NIXNAME}\" \
+	"
+

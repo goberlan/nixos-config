@@ -27,7 +27,7 @@
   } @ inputs: let
     # the :let syntax allows you to define local variables that can be used in the "in {}" block below
     # Example:
-    systems = ["aarch64-linux", "x86_64-linux", "aarch64-darwin"];
+    systems = ["aarch64-linux" "x86_64-linux" "aarch64-darwin"];
 
     # this is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument (don't really understand this)

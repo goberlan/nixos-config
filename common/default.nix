@@ -3,7 +3,7 @@
   i18n.defaultLocale = "en_US.UTF-8";
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernalPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   environment.systemPackages = with pkgs; [
     git
@@ -20,9 +20,9 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  nix.settings.experimental-features = [ "nix-command", "flakes" ];
-  networking.networkManager.enable = "true";
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  networking.networkmanager.enable = true;
 
-  # TODO may not want or need for server?
-  programs.firefox.enable = true;
+  # # TODO may not want or need for server?
+  # programs.firefox.enable = true;
 }

@@ -1,0 +1,11 @@
+* Studying Misterio77's config
+under "hosts/atlas" there is a ~default.nix~ that has what would normally be "configuration.nix" file.
+https://github.com/Misterio77/nix-config
+root/hosts/<hostname>/default.nix,hardware-configuration.nix, ssh_host_ed25519_key.pub. I like that idea...
+from this default.nix (in each host) he imports what he wants from the ~common~ directory which i like that as well
+
+
+* Flakes
+Nix treats flakes like objects in programming. When you fetch ~home-manager~ flake, you get access to all the attributse its authors "exported" such as ~lib~ (helper functions) and ~nixosModules~ (integration code)
+
+

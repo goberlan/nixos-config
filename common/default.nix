@@ -17,6 +17,7 @@
 
   users.users.wj = {
     isNormalUser = true;
+    initialPassword = "123";
     extraGroups = [ "networkmanager" "wheel" ];
   };
 

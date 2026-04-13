@@ -9,6 +9,10 @@
     # the home-manager flake.nix would have a different lock
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    # nix-like partitioning
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
     # this is to get special hardware changes 
     hardware.url = "github:nixos/nixos-hardware";
 
@@ -38,6 +42,7 @@
       specialArgs = { inherit inputs hostName; };
       modules = [
         ./hosts/${hostName}
+        inputs.disko.nixosModules.disko
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

@@ -9,9 +9,14 @@
     # inputs.hardware.nixosModules.framework-16-7040-amd
     # this will have all the partitioning and such
     ./hardware-configuration.nix
+    inputs.disko.nixosModules.disko
+    ./disko.nix
     # Applies to all hosts
     ../../common
+    ../../modules/hyprland.nix
   ];
+
+  home-manager.users.wj = import ../../home;
 
   networking = {
     hostName = "ppw";
@@ -36,14 +41,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # TODO figure out how to set swap size dynamically based on RAM size
-  swapDevices = [{
-    device = "/swapfile";
-    size = 64*1024;
-  }];
-
   services.pipewire = {
     enable = true;
-    #pulse.enable = true;
+    # pipewire doesn't output on its own
+    pulse.enable = true;
+    alsa.enable = true;
   };
 }

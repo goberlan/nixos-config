@@ -51,7 +51,7 @@
             
     # define variables here
   in {
-    nixosConfig = {
+    nixosConfigurations = {
       ppw = mkHost "ppw" "x86_64-linux";
       pw = mkHost "pw" "x86_64-linux";
       pws = mkHost "pws" "x86_64-linux";

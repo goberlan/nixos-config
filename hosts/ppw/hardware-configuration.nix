@@ -12,29 +12,27 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  fileSystems."/" =
-    { device = "/dev/disk/by-label/NIXROOT";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-label/NIXBOOT";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
-  # can't do this with id if we want to make this easy
   # fileSystems."/" =
-  #   { device = "/dev/disk/by-uuid/9d8ebc5f-7cf6-4e13-9ba1-27f1e5ea255a";
+  #   { device = "/dev/disk/by-label/NIXROOT";
   #     fsType = "ext4";
   #   };
 
   # fileSystems."/boot" =
-  #   { device = "/dev/disk/by-uuid/5E72-AD83";
+  #   { device = "/dev/disk/by-label/NIXBOOT";
   #     fsType = "vfat";
   #     options = [ "fmask=0022" "dmask=0022" ];
   #   };
+  # can't do this with id if we want to make this easy
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/9d8ebc5f-7cf6-4e13-9ba1-27f1e5ea255a";
+      fsType = "ext4";
+    };
 
-  swapDevices = [ ];
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/5E72-AD83";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

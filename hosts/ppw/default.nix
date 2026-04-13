@@ -10,7 +10,8 @@
     # this will have all the partitioning and such
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
-    ./disko.nix
+    # this is causing build issues when already partitioned
+    # ./disko.nix
     # Applies to all hosts
     ../../common
     ../../modules/hyprland.nix

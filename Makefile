@@ -45,8 +45,12 @@ vm/bootstrap:
 		' /mnt/etc/nixos/configuration.nix; \
 		nixos-install --no-root-passwd && reboot; \
 	"
-vm/getnixed:
+vm/setup:
 	NIXUSER=root $(MAKE) vm/copy
+	NIXUSER=root $(MAKE) vm/switch
+	ssh $(SSH_OPTIONS) -p$(NIXPORT) $(NIXUSER)@$(NIXADDR) " \
+		sudo reboot; \
+	"
 
 vm/copy:
 	rsync -av -e 'ssh $(SSH_OPTIONS) -p$(NIXPORT)' \

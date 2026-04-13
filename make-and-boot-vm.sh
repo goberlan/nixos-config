@@ -38,3 +38,5 @@ else
                        -drive if=pflash,format=raw,file=$HOME/vm/nixos/OVMF_VARS.4m.fd -drive file=$VM_DIR/$NIXOS_IMG_NAME,format=raw -nic user,hostfwd=tcp::$VM_PORT-:22 -vga std
 fi
 
+print "NOTE: When first installing, you will login automatically as `nixos`."
+print "Run `sudo su` and `passwd` on the VM once it boots. Set the passwd to `root` (which is used in the Makefile)"

@@ -27,7 +27,8 @@ fi
 # Boot VM
 # man qemu-system for info on these options used.
 # also: https://wiki.archlinux.org/title/QEMU
-
+print "NOTE: When first installing, you will login automatically as `nixos`."
+print "Run `sudo su` and `passwd` on the VM once it boots. Set the passwd to `root` (which is used in the Makefile)"
 if [[ $1 == "-bg" ]]; then
     echo "Booting VM in background."
     qemu-system-x86_64 -enable-kvm -cdrom $NIXOS_ISO -m 32G -boot order=d -drive if=pflash,format=raw,readonly=on,file=$OVMF_ROOT/OVMF_CODE.4m.fd \
@@ -37,6 +38,3 @@ else
     qemu-system-x86_64 -enable-kvm -cdrom $NIXOS_ISO -m 32G -boot order=d -drive if=pflash,format=raw,readonly=on,file=$OVMF_ROOT/OVMF_CODE.4m.fd \
                        -drive if=pflash,format=raw,file=$HOME/vm/nixos/OVMF_VARS.4m.fd -drive file=$VM_DIR/$NIXOS_IMG_NAME,format=raw -nic user,hostfwd=tcp::$VM_PORT-:22 -vga std
 fi
-
-print "NOTE: When first installing, you will login automatically as `nixos`."
-print "Run `sudo su` and `passwd` on the VM once it boots. Set the passwd to `root` (which is used in the Makefile)"

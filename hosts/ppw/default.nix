@@ -11,7 +11,7 @@
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
     # this is causing build issues when already partitioned
-    # ./disko.nix
+    ./disko.nix
     # Applies to all hosts
     ../../common
     ../../modules/hyprland.nix

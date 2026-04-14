@@ -22,7 +22,8 @@
             content = {
               type = "swap";
               discardPolicy = "both";
-              resumeDevice = true; 
+              resumeDevice = true;
+              extraArgs = ["-L" "SWAP" ];
             };
           };
           root = {

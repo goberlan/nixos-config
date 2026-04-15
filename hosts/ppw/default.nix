@@ -12,6 +12,7 @@
     inputs.disko.nixosModules.disko
     # this is causing build issues when already partitioned
     ./disko.nix
+    ./kanata.nix
     # Applies to all hosts
     ../../common
     ../../modules/hyprland.nix
@@ -30,15 +31,10 @@
   services.libinput.enable = true;
 
   # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.variant = "colemak_dh";
   # services.xserver.xkb.options = "caps:escape";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    useXkbConfig = true; # use xkb.options in tty.
-  };
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

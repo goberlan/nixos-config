@@ -1,0 +1,70 @@
+(defcfg
+  process-unmapped-keys yes
+  linux-dev-names-include (
+    "Framework Laptop 16 Keyboard Module - ANSI Keyboard"
+    "Framework Laptop 16 Keyboard Module - ANSI Consumer Control"
+    "Framework Laptop 16 Keyboard Module - ANSI System Control"
+    "Framework Laptop 16 Keyboard Module - ANSI"
+  )
+)
+
+(defsrc
+  q    w    e    r    t    y    u    i    o    p  [ ] \
+  a    s    d    f    g    h    j    k    l    ;    ' 
+  lsft z    x    c    v    b    n    m    ,    .    /
+  spc
+)
+
+(deflayer colemak-dh
+  q    w    f    p    b    j    l    u    y   ; [ ] \
+  @ga  @aa  @ca  @sa  g    m    @sn  @ce  @ai  @go  '  
+  @zsft   x    c    d    v  @med   k    h    ,    .    /
+  spc
+)
+
+
+(deflayer media-layer
+  _    _    _    _    _    _    _    _    _    _    _ _ _
+  _    _    _    _    _    _    prev pp   next _    _
+  _    _    _    _    _    _    _    _    _    _    _
+  _
+)
+
+(defalias
+  med (layer-toggle media-layer)
+)
+
+
+(deflayer nav-layer
+  _    _    _    _    _    _    _    _    _    _    _ _ _
+  _    _    _    _    _    left down up   rght _    _
+  _    _    _    _    _    _    _    _    _    _    _
+  _
+)
+
+(defalias
+  nav (layer-toggle nav-layer)
+)
+(defvar
+  ;; These are in milliseconds
+  tap-timeout 200
+  hold-timeout 400
+)
+;; (command tap-timeout hold-timeout tap hold)
+;; 1st (200)	tap_timeout	If you release the key within this time, it's a "tap" (the letter a).
+;; 2nd (200)	hold_timeout	If you hold the key longer than this, it's a "hold" (the Super key).
+(defalias
+  ;; tap-hold: 
+  ;; If you press another key while holding these, it triggers the MOD immediately.
+  ;; No more "hand-side" restrictions.
+  zsft (tap-hold 200 200 z lsft)
+  ga (tap-hold-release $tap-timeout $hold-timeout a lmet)
+  aa (tap-hold-release $tap-timeout $hold-timeout r lalt)
+  ca (tap-hold-release $tap-timeout $hold-timeout s lctl)
+  sa (tap-hold-release $tap-timeout $hold-timeout t lsft) 
+
+  sn (tap-hold-release $tap-timeout $hold-timeout n rsft)
+  ce (tap-hold-release $tap-timeout $hold-timeout e rctl)
+  ai (tap-hold-release $tap-timeout $hold-timeout i ralt)
+  go (tap-hold-release $tap-timeout $hold-timeout o rmet)
+)

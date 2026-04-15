@@ -7,7 +7,7 @@
 	"$menu" = "fuzzel";
         input = {
           kb_layout = "us";
-          kb_variant = "colemak_dh";
+          # kb_variant = "colemak_dh";
           touchpad = {
             disable_while_typing = false;
             natural_scroll = false;

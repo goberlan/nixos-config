@@ -13,6 +13,7 @@
     emacs-pgtk # wayland
     ripgrep
     fd
+    brightnessctl
   ];
 
   users.users.wj = {

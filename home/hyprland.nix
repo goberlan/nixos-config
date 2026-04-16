@@ -19,6 +19,8 @@
 		border_size = 2;
 	};
         bind = [
+	     	  ",XF86MonBrightnessUp,exec,brightnessctl s +1%;"
+          ",XF86MonBrightnessDown,exec,brightnessctl s 5%-;"
           "$mod, return, exec, ghostty +new-window" # ghostty should auto run as a d-bus/systemd app so this should work
           "$mod, K, killactive"
 	  "$mod, Space, exec, $menu"

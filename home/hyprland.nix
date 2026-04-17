@@ -1,55 +1,102 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
+  # for when it breaks: https://itsohen.github.io/hyprrulefix/ (converter)
   wayland.windowManager.hyprland = {
-      enable = true;
-      settings = {
-        "$mod" = "SUPER";
-	"$modS" = "$mod SHIFT";
-	"$menu" = "fuzzel";
-        input = {
-          kb_layout = "us";
-          # kb_variant = "colemak_dh";
-          touchpad = {
-            disable_while_typing = false;
-            natural_scroll = false;
-          };
+    enable = true;
+    settings = {
+      "$mod" = "SUPER";
+      "$modS" = "$mod SHIFT";
+      "$menu" = "fuzzel";
+      input = {
+        kb_layout = "us";
+        # kb_variant = "colemak_dh";
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        repeat_rate = 50;
+        repeat_delay = 225;
+
+        touchpad = {
+          # i wonder if this will prevent dragn'cap?
+          disable_while_typing = true;
+          natural_scroll = false;
         };
-	general = {
-		gaps_in = 5;
-		gaps_out = 20;
-		border_size = 2;
-	};
-        bind = [
-	     	  ",XF86MonBrightnessUp,exec,brightnessctl s +1%;"
-          ",XF86MonBrightnessDown,exec,brightnessctl s 5%-;"
-          "$mod, return, exec, ghostty +new-window" # ghostty should auto run as a d-bus/systemd app so this should work
-          "$mod, K, killactive"
-	  "$mod, Space, exec, $menu"
-	  "$mod, E, exec, $fileManager"
-	  "$mod, 1, workspace, 1"
-	  "$mod, 2, workspace, 2"
-	  "$mod, 3, workspace, 3"
-	  "$mod, 4, workspace, 4"
-	  "$mod, 5, workspace, 5"
-	  "$mod, 6, workspace, 5"
-	  "$mod, 7, workspace, 7"
-	  "$mod, 8, workspace, 8"
-	  "$mod, 9, workspace, 9"
-	  "$mod, 0, workspace, 10"
-	  "$modS, 1, movetoworkspace, 1"
-	  "$modS, 2, movetoworkspace, 2"
-	  "$modS, 3, movetoworkspace, 3"
-	  "$modS, 4, movetoworkspace, 4"
-	  "$modS, 5, movetoworkspace, 5"
-	  "$modS, 6, movetoworkspace, 5"
-	  "$modS, 7, movetoworkspace, 7"
-	  "$modS, 8, movetoworkspace, 8"
-	  "$modS, 9, movetoworkspace, 9"
-	  "$modS, 0, movetoworkspace, 10"
-	  "$mod, l, movefocus, l"
-	  "$mod, r, movefocus, r"
-	  "$mod, u, movefocus, u"
-	  "$mod, d, movefocus, d"
+      };
+      general = {
+        gaps_in = 5;
+        gaps_out = 20;
+        border_size = 2;
+      };
+      gesture = [
+        "3, horizontal, workspace"
+      ];
+      cursor = {
+        hide_on_touch = true;
+      };
+      # when this updates to after 0.52, the syyntax will be:
+      # windowrule=match:class com.mitchellh.ghostty, workspace 1
+      # <props>, <effec>
+      windowrule =
+        let
+          emacs = "class:emacs";
+          steam = "class:steam_app_[0-9]*";
+          ghostty = "class:com.mitchellh.ghostty";
+          firefox = "class:firefox";
+          signal = "class:signal";
+        in
+        [
+          "workspace 1 silent, ${ghostty}"
+          "workspace 2 silent, ${emacs}"
+          "workspace 3 silent, ${firefox}"
+          "workspace 7 silent, ${steam}"
+          "workspace 9 silent, ${signal}"
         ];
+      # bindel repeats the key when held down (and during lock)
+      bindel = [
+        ",XF86MonBrightnessUp,exec,brightnessctl set +1%"
+        ",XF86MonBrightnessDown,exec,brightnessctl set 1%-"
+        # ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        # ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        # ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        # ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ];
+      # works while locked
+      bindl = [
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, playerctl next"
+      ];
+      bind = [
+        "$mod, return, exec, ghostty +new-window" # ghostty should auto run as a d-bus/systemd app so this should work (this attaches to the server)
+        "$mod, K, killactive"
+        "$mod CTRL SHIFT ALT, K, exit"
+        "$mod, Space, exec, $menu"
+        "$mod, E, exec, $fileManager"
+        "$mod, F, togglefloating"
+        "$mod, S, togglesplit"
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+        "$mod, 6, workspace, 5"
+        "$mod, 7, workspace, 7"
+        "$mod, 8, workspace, 8"
+        "$mod, 9, workspace, 9"
+        "$mod, 0, workspace, 10"
+        "$modS, 1, movetoworkspace, 1"
+        "$modS, 2, movetoworkspace, 2"
+        "$modS, 3, movetoworkspace, 3"
+        "$modS, 4, movetoworkspace, 4"
+        "$modS, 5, movetoworkspace, 5"
+        "$modS, 6, movetoworkspace, 5"
+        "$modS, 7, movetoworkspace, 7"
+        "$modS, 8, movetoworkspace, 8"
+        "$modS, 9, movetoworkspace, 9"
+        "$modS, 0, movetoworkspace, 10"
+        "$mod, l, movefocus, l"
+        "$mod, r, movefocus, r"
+        "$mod, u, movefocus, u"
+        "$mod, d, movefocus, d"
+      ];
       animations = {
         enabled = true;
         bezier = [
@@ -77,11 +124,10 @@
           "workspaces,1,2.5,easeoutback,slidefade"
         ];
       };
-      };
+    };
   };
 
   programs.waybar.enable = true;
-  programs.fuzzel.enable = true;  # app launcher
+  programs.fuzzel.enable = true; # app launcher
   programs.ghostty.enable = true;
 }
-

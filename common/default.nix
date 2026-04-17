@@ -14,6 +14,7 @@
     ripgrep
     fd
     brightnessctl
+    nixfmt
   ];
 
   users.users.wj = {

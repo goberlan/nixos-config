@@ -1,4 +1,0 @@
-* Studying Misterio77's config
-under "hosts/atlas" there is a ~default.nix~ that has what would normally be "configuration.nix" file.
-https://github.com/Misterio77/nix-config
-root/hosts/<hostname>/default.nix,hardware-configuration.nix, ssh_host_ed25519_key.pub. I like that idea...

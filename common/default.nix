@@ -10,11 +10,9 @@
     vim
     curl
     wget
-    emacs-pgtk # wayland
     ripgrep
     fd
     brightnessctl
-    nixfmt
   ];
 
   users.users.wj = {

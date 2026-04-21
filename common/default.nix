@@ -12,6 +12,7 @@
     wget
     ripgrep
     fd
+    fzf
     nixfmt
     brightnessctl
   ];

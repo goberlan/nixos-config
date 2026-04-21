@@ -10,7 +10,6 @@
     extraConfig = builtins.readFile ./config/init.el;
     extraPackages = e: [
       e.nix-mode
-      e.nixfmt
       e.magit
       e.gptel
     ];

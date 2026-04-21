@@ -21,9 +21,9 @@
         };
       };
       general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
+        gaps_in = 0;
+        gaps_out = 0;
+        border_size = 0;
       };
       gesture = [
         "3, horizontal, workspace"
@@ -127,7 +127,5 @@
     };
   };
 
-  programs.waybar.enable = true;
   programs.fuzzel.enable = true; # app launcher
-  programs.ghostty.enable = true;
 }

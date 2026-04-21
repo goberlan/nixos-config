@@ -47,7 +47,7 @@
 )
 (defvar
   ;; These are in milliseconds
-  tap-timeout 200
+  tap-timeout 150
   hold-timeout 400
 )
 ;; (command tap-timeout hold-timeout tap hold)

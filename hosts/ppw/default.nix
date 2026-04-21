@@ -39,8 +39,16 @@
   services.printing.enable = true;
 
   # Enable Bluetooth support
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true; # Powers up the controller on boot
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true; # Powers up the controller on boot
+      settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;   # Battery % reporting
+      };
+      };
+  };
 
   # Framework-specific: Ensure firmware is available
   # hardware.enableAllFirmware = true;
@@ -52,6 +60,6 @@
     # pipewire doesn't output on its own
     pulse.enable = true;
     alsa.enable = true;
-    alsa.support32Bit = true;
+    wireplumber.enable = true;
   };
 }

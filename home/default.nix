@@ -9,6 +9,7 @@
     
   imports = [
     ./hyprland.nix
+    ./waybar.nix
     ./ghostty.nix
     ./emacs/default.nix
     ./bluetooth.nix

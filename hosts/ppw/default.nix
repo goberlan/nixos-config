@@ -38,10 +38,20 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable Bluetooth support
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true; # Powers up the controller on boot
+
+  # Framework-specific: Ensure firmware is available
+  # hardware.enableAllFirmware = true;
+
+  # Enable the Bluetooth system service (Bluez)
+  services.blueman.enable = true;
   services.pipewire = {
     enable = true;
     # pipewire doesn't output on its own
     pulse.enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
   };
 }

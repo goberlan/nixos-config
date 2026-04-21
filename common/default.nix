@@ -26,4 +26,5 @@
 
   # # TODO may not want or need for server?
   programs.firefox.enable = true;
+
 }

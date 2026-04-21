@@ -11,5 +11,6 @@
     ./hyprland.nix
     ./ghostty.nix
     ./emacs/default.nix
+    ./bluetooth.nix
   ];
 }

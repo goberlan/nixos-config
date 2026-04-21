@@ -11,14 +11,14 @@
 (defsrc
   q    w    e    r    t    y    u    i    o    p  [ ] \
   a    s    d    f    g    h    j    k    l    ;    ' 
-  lsft z    x    c    v    b    n    m    ,    .    /
+  lsft z    x    c    v    b    n    m    ,    .    / rsft
   spc
 )
 
 (deflayer colemak-dh
   q    w    f    p    b    j    l    u    y   ; [ ] \
-  @ga  @aa  @ca  @sa  g    m    @sn  @ce  @ai  @go  '  
-  @zsft   x    c    d    v  @med   k    h    ,    .    /
+  a  @aa  @ca  @sa  g    m    @sn  @ce  @ai  o  '  
+  z   x    c    d    @gv  @med   @gk    h    ,    .    / XX
   spc
 )
 
@@ -26,7 +26,7 @@
 (deflayer media-layer
   _    _    _    _    _    _    _    _    _    _    _ _ _
   _    _    _    _    _    _    prev pp   next _    _
-  _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _ _
   _
 )
 
@@ -37,8 +37,8 @@
 
 (deflayer nav-layer
   _    _    _    _    _    _    _    _    _    _    _ _ _
-  _    _    _    _    _    left down up   rght _    _
-  _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    left down up   rght _    _ 
+  _    _    _    _    _    _    _    _    _    _    _ _
   _
 )
 
@@ -58,7 +58,7 @@
   ;; If you press another key while holding these, it triggers the MOD immediately.
   ;; No more "hand-side" restrictions.
   zsft (tap-hold 200 200 z lsft)
-  ga (tap-hold-release $tap-timeout $hold-timeout a lmet)
+  gv (tap-hold-release $tap-timeout $hold-timeout v lmet)
   aa (tap-hold-release $tap-timeout $hold-timeout r lalt)
   ca (tap-hold-release $tap-timeout $hold-timeout s lctl)
   sa (tap-hold-release $tap-timeout $hold-timeout t lsft) 
@@ -66,5 +66,5 @@
   sn (tap-hold-release $tap-timeout $hold-timeout n rsft)
   ce (tap-hold-release $tap-timeout $hold-timeout e rctl)
   ai (tap-hold-release $tap-timeout $hold-timeout i ralt)
-  go (tap-hold-release $tap-timeout $hold-timeout o rmet)
+  gk (tap-hold-release $tap-timeout $hold-timeout k rmet)
 )

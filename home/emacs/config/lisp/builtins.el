@@ -1,12 +1,17 @@
 (use-package emacs
   :init
-  ;; Initialize package system FIRST
-  (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-  (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel/"))
-  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
-  (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-  (package-initialize)
+  ;; Bookmarks
+  (setq bookmark-default-file "~/.local/share/emacs/bookmarks")
+  (setq recentf-save-file "~/.local/share/emacs/recentf")
+  (setq savehist-file "~/.local/share/emacs/history")
+  (setq backup-directory-alist '(("." . "~/.local/share/emacs/backups")))
+  ;; not needed for nixos
+  ;; (require 'package)
+  ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  ;; (add-to-list 'package-archives '("gnu-devel" . "https://elpa.gnu.org/devel/"))
+  ;; (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+  ;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+  ;; (package-initialize)
   ;; TAB cycle if there are only few candidates
   ;; (setq completion-cycle-threshold 2)
   ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
@@ -117,9 +122,6 @@
 (use-package which-key
   :config
   (which-key-mode))
-
-(use-package paredit
-  :hook (paredit-mode . elisp-mode))
 
 (use-package savehist
  :init

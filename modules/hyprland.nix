@@ -1,17 +1,15 @@
-{ pkgs, ... }: {
-    programs.hyprland.enable = true;
+{ pkgs, ... }:
+{
+  programs.hyprland = {
+    enable = true;
+    withUWSM = true;
+    xwayland.enable = true;
+  };
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-    };
+  hardware.graphics.enable = true;
 
-    hardware.graphics.enable = true;
-
-    environment.systemPackages = with pkgs; [
-      wl-clipboard
-      xwayland
-    ];
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    xwayland
+  ];
 }
-
-  

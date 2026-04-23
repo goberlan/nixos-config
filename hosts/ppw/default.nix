@@ -17,6 +17,7 @@
     ../../common
     ../../modules/hyprland.nix
     ../../modules/audio.nix
+    ../../modules/greetd.nix
   ];
 
   home-manager.users.wj = import ../../home;

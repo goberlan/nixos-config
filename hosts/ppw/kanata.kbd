@@ -48,7 +48,7 @@
 (defvar
   ;; These are in milliseconds
   tap-timeout 140
-  hold-timeout 300
+  hold-timeout 180
 )
 ;; (command tap-timeout hold-timeout tap hold)
 ;; 1st (200)	tap_timeout	If you release the key within this time, it's a "tap" (the letter a).

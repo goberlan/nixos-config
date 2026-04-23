@@ -1,6 +1,22 @@
 { pkgs, ... }:
 {
   # for when it breaks: https://itsohen.github.io/hyprrulefix/ (converter)
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "~/files/wallpapers/wp12002164-bladerunner-2049-4k-computer-wallpapers.jpg"
+        "~/files/wallpapers/wp12002181-bladerunner-2049-4k-computer-wallpapers.jpg"
+      ];
+      wallpaper = [
+        # By display
+        #"DP-2,~/wallpapers/wallpaper2.jpg"
+        # By default/fallback
+        # ",~/files/wallpapers/wp12002164-bladerunner-2049-4k-computer-wallpapers.jpg"
+        ",~/files/wallpapers/wp12002181-bladerunner-2049-4k-computer-wallpapers.jpg"
+      ];
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {

@@ -24,7 +24,7 @@ in
   home.packages = with pkgs; [
     zig
     tex
-
+    mpv
   ];
 
   imports = [
@@ -33,5 +33,6 @@ in
     ./ghostty.nix
     ./emacs/default.nix
     ./bluetooth.nix
+    ./audio.nix
   ];
 }

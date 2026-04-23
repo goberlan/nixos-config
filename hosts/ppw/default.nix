@@ -16,6 +16,7 @@
     # Applies to all hosts
     ../../common
     ../../modules/hyprland.nix
+    ../../modules/audio.nix
   ];
 
   home-manager.users.wj = import ../../home;
@@ -55,11 +56,4 @@
 
   # Enable the Bluetooth system service (Bluez)
   services.blueman.enable = true;
-  services.pipewire = {
-    enable = true;
-    # pipewire doesn't output on its own
-    pulse.enable = true;
-    alsa.enable = true;
-    wireplumber.enable = true;
-  };
 }

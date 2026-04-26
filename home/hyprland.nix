@@ -25,13 +25,16 @@
     settings = {
       "$mod" = "SUPER";
       "$modS" = "$mod SHIFT";
+      "$modA" = "$mod ALT";
+      "$modC" = "$mod CTRL";
+      "$modAll" = "$mod CTRL ALT SHIFT";
       "$menu" = "fuzzel";
       input = {
         kb_layout = "us";
         # kb_variant = "colemak_dh";
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-        repeat_rate = 50;
-        repeat_delay = 225;
+        repeat_rate = 60;
+        repeat_delay = 190;
 
         touchpad = {
           # i wonder if this will prevent dragn'cap?
@@ -70,18 +73,18 @@
         ];
       # bindel repeats the key when held down (and during lock)
       bindel = [
-        ",XF86MonBrightnessUp,exec,brightnessctl set +1%"
-        ",XF86MonBrightnessDown,exec,brightnessctl set 1%-"
-        # ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        # ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        # ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        # ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "$mod,B,exec,brightnessctl set +3%"
+        "$modA,B,exec,brightnessctl set 3%-"
+        "$mod,V, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        "$modA,V, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        "$mod,M, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        "$modA,M, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
       # works while locked
       bindl = [
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-        ", XF86AudioNext, exec, playerctl next"
+        "$mod,P, exec, playerctl play-pause"
+        "$modA,P, exec, playerctl previous"
+        "$mod,N, exec, playerctl next"
       ];
       bind = [
         "$mod, return, exec, ghostty +new-window" # ghostty should auto run as a d-bus/systemd app so this should work (this attaches to the server)

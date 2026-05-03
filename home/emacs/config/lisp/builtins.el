@@ -40,6 +40,8 @@
   (load-theme 'modus-vivendi-tinted)
   ;; (fido-vertical-mode 1)
   (recentf-mode 1)
+  (which-key-mode)
+  (savehist-mode)
   ;; better ergonomics
   (repeat-mode)
 
@@ -67,7 +69,7 @@
   ;;(keymap-unset hs-minor-mode-map "C-c @ C-M-h")
   ;;(kemap-unset hs-minor-mode-map "C-M-h")
   (windmove-mode)
-  (hs-minor-mode)
+  ;; (hs-minor-mode)
   (windmove-default-keybindings 'meta)
 
   :custom
@@ -93,7 +95,7 @@
   (history-delete-duplicates t)
   ;; (auto-save-list-file-prefix (user-data "auto-save-list/.saves-"))
   (inhibit-startup-screen t)
-
+  
   (kill-do-not-save-duplicates t)
   (kill-ring-max 200)
   (bookmark-save-flag 1)
@@ -107,16 +109,7 @@
   (cursor ((t (:background "#FF9B00"))))
   )
 ;; adds color to compilation and removes ansi escape sequences (letters w/ brackets)
-(use-package ansi-color
-  :hook (compilation-filter . ansi-color-compilation-filter))
-
-(use-package which-key
-  :config
-  (which-key-mode))
-
-(use-package savehist
- :init
- (savehist-mode))
-
+;; (use-package ansi-color
+;;   :hook (compilation-filter . ansi-color-compilation-filter))
 
 (provide 'builtins)

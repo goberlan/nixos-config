@@ -8,7 +8,7 @@
 ;;                             native-comp-eln-load-path)))
 ;;         native-comp-async-report-warnings-errors 'silent))
 (setq user-emacs-directory (expand-file-name "~/.cache/emacs/")) ; No littering
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
+
 (setq
  custom-file (concat user-emacs-directory "custom.el") ; Place all "custom" code in a temporary file
  bookmark-default-file (concat user-emacs-directory "bookmarks")
@@ -23,7 +23,9 @@
  ad-redefinition-action 'accept ; Disable warnings from legacy advice system
  inhibit-startup-message t ; Reduce noise at startup
  inhibit-startup-echo-area-message user-login-name
- inhibit-default-init t
+ ;; not really sure what this does. disables something
+ ;; inhibit-default-init t
+ inhibit-startup-screen t
  initial-scratch-message nil
  auto-mode-case-fold nil ; Use case-sensitive `auto-mode-alist' for performance
  fast-but-imprecise-scrolling t ; More performant rapid scrolling over unfontified regions

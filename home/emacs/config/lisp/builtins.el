@@ -1,10 +1,5 @@
 (use-package emacs
   :init
-  ;; Bookmarks
-  (setq bookmark-default-file "~/.local/share/emacs/bookmarks")
-  (setq recentf-save-file "~/.local/share/emacs/recentf")
-  (setq savehist-file "~/.local/share/emacs/history")
-  (setq backup-directory-alist '(("." . "~/.local/share/emacs/backups")))
   ;; not needed for nixos
   ;; (require 'package)
   ;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -47,7 +42,7 @@
   (recentf-mode 1)
   ;; better ergonomics
   (repeat-mode)
-  (setq gc-cons-threshold 80000000) ;; original value * 100
+
   (setq request-log-level 'blather)
   (setq xref-search-program 'ripgrep)
   (setq request-message-level 'blather)
@@ -67,16 +62,12 @@
   ;; (set-frame-font "JetBrainsMonoNL Nerd Font Propo-12")
   (set-default-coding-systems 'utf-8)
   (keymap-global-unset "C-z")
-  ;; (keymap-global-unset "C-x C-s")
-  ;; (keymap-global-unset "C-x s")
-  ;; not needed when using straight.el i don't think
-  ;; (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 
   ;;TODO: figure out how to make these turn off when a certain mode is called (they are extra keybinds)
   ;;(keymap-unset hs-minor-mode-map "C-c @ C-M-h")
   ;;(kemap-unset hs-minor-mode-map "C-M-h")
   (windmove-mode)
-  ;; (hs-minor-mode)
+  (hs-minor-mode)
   (windmove-default-keybindings 'meta)
 
   :custom
@@ -102,7 +93,7 @@
   (history-delete-duplicates t)
   ;; (auto-save-list-file-prefix (user-data "auto-save-list/.saves-"))
   (inhibit-startup-screen t)
-  (backup-directory-alist '(("." . "~/.local/share/emacs/backups")))
+
   (kill-do-not-save-duplicates t)
   (kill-ring-max 200)
   (bookmark-save-flag 1)

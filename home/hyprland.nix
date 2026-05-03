@@ -34,7 +34,7 @@
         # kb_variant = "colemak_dh";
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
         repeat_rate = 60;
-        repeat_delay = 190;
+        repeat_delay = 275;
 
         touchpad = {
           # i wonder if this will prevent dragn'cap?

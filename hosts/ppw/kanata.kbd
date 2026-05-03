@@ -45,19 +45,30 @@
 (defalias
   nav (layer-toggle nav-layer)
 )
+
+;; if you still have issues you can try this discussion
+;; https://github.com/jtroo/kanata/discussions/1455
+;; which got added to kanata here: https://github.com/jtroo/kanata/blob/main/cfg_samples/home-row-mod-advanced.kbd
+;; (tap-hold $tap-repress-timeout $hold-timeout $tap-action $hold-action)
+;; $tap-repress-timeout Number of milliseconds for the window that a tap into re-press with hold results in the $tap-action being held.
+;; $hold-timeout Number of milliseconds after which the $hold-action activates. Releasing the key before this elapses results in $tap-action activating.
+;; $tap-action Action to activate when the input is determined to be a "tap".
+;; $hold-action Action to activate when the input is determined to be a "hold".
+;; https://github.com/jtroo/kanata/blob/main/docs/config.adoc#tap-hold
 (defvar
   ;; These are in milliseconds
-  tap-timeout 140
-  hold-timeout 190
+  ;; This is the time a press+release+press registers
+  tap-timeout 180
+  hold-timeout 225
 )
-;; (command tap-timeout hold-timeout tap hold)
-;; 1st (200)	tap_timeout	If you release the key within this time, it's a "tap" (the letter a).
-;; 2nd (200)	hold_timeout	If you hold the key longer than this, it's a "hold" (the Super key).
+
+
+
+
 (defalias
   ;; tap-hold: 
   ;; If you press another key while holding these, it triggers the MOD immediately.
   ;; No more "hand-side" restrictions.
-  zsft (tap-hold 200 200 z lsft)
   gv (tap-hold-release $tap-timeout $hold-timeout v lmet)
   aa (tap-hold-release $tap-timeout $hold-timeout r lalt)
   ca (tap-hold-release $tap-timeout $hold-timeout s lctl)

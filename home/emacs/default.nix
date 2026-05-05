@@ -15,6 +15,7 @@
       marginalia
       embark
       rg
+      pdf-tools
       consult
       corfu
       auctex

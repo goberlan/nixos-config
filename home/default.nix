@@ -10,6 +10,10 @@ let
         ulem
         hyperref
         capt-of
+        enumitem
+        titlesec
+        ec
+        cm-super
         #(setq org-latex-compiler "lualatex")
         #(setq org-preview-latex-default-process 'dvisvgm)
       ]
@@ -25,6 +29,7 @@ in
     zig
     tex
     mpv
+    signal-desktop
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.gemini-cli
   ];
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   tex = (
     pkgs.texliveBasic.withPackages (
@@ -25,6 +25,7 @@ in
     zig
     tex
     mpv
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.gemini-cli
   ];
 
   imports = [

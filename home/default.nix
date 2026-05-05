@@ -29,7 +29,7 @@ in
     zig
     tex
     mpv
-    signal-desktop
+    signal-desktop-bin
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.gemini-cli
   ];
 

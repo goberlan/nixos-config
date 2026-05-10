@@ -1,2 +1,2 @@
 (use-package nix-mode)
-(provide 'nix)
+(provide 'nix-config)

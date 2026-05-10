@@ -7,40 +7,40 @@
 ;  (load-theme 'modus-vivendi-tinted t)
 ;  )
 
-(use-package olivetti
-  :ensure t
-  :hook ((prog-mode . olivetti-mode)
-         (magit-mode . olivetti-mode)
-         (help-mode . olivetti-mode)
-         (dired-mode . olivetti-mode)
-         (org-mode . olivetti-mode)
-         (conf-mode . olivetti-mode)
-         (minibuffer-mode . olivetti-mode)
-         (man-mode . olivetti-mode)
-         ;; (vterm-mode . olivetti-mode)
-         (rst-mode . olivetti-mode)
-         (yaml-ts-mode . olivetti-mode)
-         (helpful-mode . olivetti-mode))
-  :config
-  (setq olivetti-body-width 160)
-  (setq olivetti-margin-width 10)
-  (setq olivetti-minimum-body-width 120))
+;; (use-package olivetti
+;;   :ensure t
+;;   :hook ((prog-mode . olivetti-mode)
+;;          (magit-mode . olivetti-mode)
+;;          (help-mode . olivetti-mode)
+;;          (dired-mode . olivetti-mode)
+;;          (org-mode . olivetti-mode)
+;;          (conf-mode . olivetti-mode)
+;;          (minibuffer-mode . olivetti-mode)
+;;          (man-mode . olivetti-mode)
+;;          ;; (vterm-mode . olivetti-mode)
+;;          (rst-mode . olivetti-mode)
+;;          (yaml-ts-mode . olivetti-mode)
+;;          (helpful-mode . olivetti-mode))
+;;   :config
+;;   (setq olivetti-body-width 160)
+;;   (setq olivetti-margin-width 10)
+;;   (setq olivetti-minimum-body-width 120))
 
-(use-package helpful
-  :ensure t
-  ;; Note that the built-in `describe-function' includes both functions
-  ;; and macros. `helpful-function' is functions only, so we provide
-  ;; `helpful-callable' as a drop-in replacement.
-  :bind
-  (
-   ;; functions only
-   ("C-h F" . helpful-function)
-   ("C-h x" . helpful-command)
-   ("C-h M" . helpful-macro)
-   ;; includes functions and macros
-   ("C-h f" . helpful-callable)
-   ("C-h ." . helpful-at-point)
-   ("C-h v" . helpful-variable)))
+;; (use-package helpful
+;;   :ensure t
+;;   ;; Note that the built-in `describe-function' includes both functions
+;;   ;; and macros. `helpful-function' is functions only, so we provide
+;;   ;; `helpful-callable' as a drop-in replacement.
+;;   :bind
+;;   (
+;;    ;; functions only
+;;    ("C-h F" . helpful-function)
+;;    ("C-h x" . helpful-command)
+;;    ("C-h M" . helpful-macro)
+;;    ;; includes functions and macros
+;;    ("C-h f" . helpful-callable)
+;;    ("C-h ." . helpful-at-point)
+;;    ("C-h v" . helpful-variable)))
 
 (use-package consult
   :ensure t
@@ -116,8 +116,8 @@
   (advice-add #'register-preview :override #'consult-register-window)
 
   ;; Use Consult to select xref locations with preview
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+  ;; (setq xref-show-xrefs-function #'consult-xref
+  ;;       xref-show-definitions-function #'consult-xref)
 
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
@@ -133,8 +133,8 @@
   (consult-customize
    consult-theme :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file consult-xref
-   consult--source-bookmark consult--source-file-register
+   ;; consult-bookmark consult-recent-file consult-consult
+   xref--source-bookmark consult--source-file-register
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
@@ -197,38 +197,38 @@
                  (window-parameters (mode-line-format . none)))))
 
 ;; Consult users will also want the embark-consult package.
-(use-package embark-consult
-  :ensure t
-  :after (embark consult)
-  :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+;; (use-package embark-consult
+;;   :ensure t
+;;   :after (embark consult)
+;;   :hook
+;;   (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package dumb-jump
-  :config
-  (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
-  (setq dumb-jump-force-searcher 'rg)
-  :hook
-  ;; i don't think this works...
-  (xref-backend-functions . dumb-jump-xref-activate))
+;; (use-package dumb-jump
+;;   :config
+;;   (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
+;;   (setq dumb-jump-force-searcher 'rg)
+;;   :hook
+;;   ;; i don't think this works...
+;;   (xref-backend-functions . dumb-jump-xref-activate))
 ;; but this does
 ;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
-(use-package avy
-  :ensure t
-  :bind
-  ("C-'" . avy-goto-char)
-  ("C-\"" . avy-goto-char-2))
+;; (use-package avy
+;;   :ensure t
+;;   :bind
+;;   ("C-'" . avy-goto-char)
+;;   ("C-\"" . avy-goto-char-2))
 
 
-(use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+;; (use-package orderless
+;;   :ensure t
+;;   :custom
+;;   (completion-styles '(orderless basic))
+;;   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
   :ensure t
-  :init
+  :config
   (vertico-mode)
   ;; from the github
   ;; Different scroll margin
@@ -245,7 +245,7 @@
   (vertico-cycle t))
 
 ;; (use-package crux)
-;; ;; Enable rich annotations using the Marginalia package
+;; ;; Enable rich annotations using the Marginalias package
 ;; (use-package marginalia
 ;;   ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
 ;;   ;; available in the *Completions* buffer, add it to the
@@ -260,6 +260,6 @@
 ;;   ;; package.
 ;;   (marginalia-mode))
 
-
+(use-package corfu)
 
 (provide 'uxui)

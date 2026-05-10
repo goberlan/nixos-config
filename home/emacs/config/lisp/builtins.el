@@ -63,6 +63,7 @@
   ;; This one loaded faster, but doesn't work for emacsclient when you use emacs daemon
   ;; (set-frame-font "JetBrainsMonoNL Nerd Font Propo-12")
   (set-default-coding-systems 'utf-8)
+  (selection-coding-system 'utf-8)
   (keymap-global-unset "C-z")
 
   ;;TODO: figure out how to make these turn off when a certain mode is called (they are extra keybinds)

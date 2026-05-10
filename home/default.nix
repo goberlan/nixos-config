@@ -29,8 +29,11 @@ in
     zig
     tex
     mpv
+    anki
     signal-desktop-bin
     inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.gemini-cli
+    inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.pi-coding-agent
+    # claude is not free... i can do pi
   ];
 
   imports = [

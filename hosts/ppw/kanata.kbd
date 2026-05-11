@@ -59,7 +59,7 @@
   ;; These are in milliseconds
   ;; This is the time a press+release+press registers
   tap-repress-timeout 200
-  hold-timeout 230
+  hold-timeout 220
 )
 
 (defalias

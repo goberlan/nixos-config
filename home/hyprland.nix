@@ -34,7 +34,7 @@
         # kb_variant = "colemak_dh";
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
         repeat_rate = 60;
-        repeat_delay = 275;
+        repeat_delay = 300;
 
         touchpad = {
           # i wonder if this will prevent dragn'cap?
@@ -88,8 +88,8 @@
       ];
       bind = [
         "$mod, return, exec, ghostty +new-window" # ghostty should auto run as a d-bus/systemd app so this should work (this attaches to the server)
-        "$mod, K, killactive"
-        "$mod CTRL SHIFT ALT, K, exit"
+        "$mod, W, killactive"
+        "$mod CTRL SHIFT ALT, W, exit"
         "$mod, Space, exec, $menu"
         "$mod, E, exec, $fileManager"
         "$mod, F, togglefloating"

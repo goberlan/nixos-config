@@ -49,7 +49,7 @@
 ;; if you still have issues you can try this discussion
 ;; https://github.com/jtroo/kanata/discussions/1455
 ;; which got added to kanata here: https://github.com/jtroo/kanata/blob/main/cfg_samples/home-row-mod-advanced.kbd
-;; (tap-hold $tap-repress-timeout $hold-timeout $tap-action $hold-action)
+;; (tap-hold $tap-repress-timeout $hold-timxeout $tap-action $hold-action)
 ;; $tap-repress-timeout Number of milliseconds for the window that a tap into re-press with hold results in the $tap-action being held.
 ;; $hold-timeout Number of milliseconds after which the $hold-action activates. Releasing the key before this elapses results in $tap-action activating.
 ;; $tap-action Action to activate when the input is determined to be a "tap".
@@ -58,24 +58,21 @@
 (defvar
   ;; These are in milliseconds
   ;; This is the time a press+release+press registers
-  tap-timeout 180
-  hold-timeout 225
+  tap-repress-timeout 200
+  hold-timeout 230
 )
-
-
-
 
 (defalias
   ;; tap-hold: 
   ;; If you press another key while holding these, it triggers the MOD immediately.
   ;; No more "hand-side" restrictions.
-  gv (tap-hold-release $tap-timeout $hold-timeout v lmet)
-  aa (tap-hold-release $tap-timeout $hold-timeout r lalt)
-  ca (tap-hold-release $tap-timeout $hold-timeout s lctl)
-  sa (tap-hold-release $tap-timeout $hold-timeout t lsft) 
+  gv (tap-hold-release $tap-repress-timeout $hold-timeout v lmet)
+  aa (tap-hold-release $tap-repress-timeout $hold-timeout r lalt)
+  ca (tap-hold-release $tap-repress-timeout $hold-timeout s lctl)
+  sa (tap-hold-release $tap-repress-timeout $hold-timeout t lsft) 
 
-  sn (tap-hold-release $tap-timeout $hold-timeout n rsft)
-  ce (tap-hold-release $tap-timeout $hold-timeout e rctl)
-  ai (tap-hold-release $tap-timeout $hold-timeout i ralt)
-  gk (tap-hold-release $tap-timeout $hold-timeout k rmet)
+  sn (tap-hold-release $tap-repress-timeout $hold-timeout n rsft)
+  ce (tap-hold-release $tap-repress-timeout $hold-timeout e rctl)
+  ai (tap-hold-release $tap-repress-timeout $hold-timeout i ralt)
+  gk (tap-hold-release $tap-repress-timeout $hold-timeout k rmet)
 )

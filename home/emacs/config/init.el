@@ -5,6 +5,7 @@
 (require 'builtins)
 (require 'uxui)
 (require 'git)
+(require 'organize)
 (require 'nix-config)
 
 ;; (require 'theme)

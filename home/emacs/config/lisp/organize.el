@@ -7,17 +7,16 @@
 	 :map org-mode-map
 	 ("C-c k" . org-cut-subtree))
   :config
-  (add-to-list
-   'org-src-lang-modes '("plantuml" . plantuml))
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((plantuml . t)
-     (C . t)
-     (shell . t)))
+  ;; (add-to-list
+  ;;  'org-src-lang-modes '("plantuml" . plantuml))
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages
+  ;;  '((plantuml . t)
+  ;;    (C . t)
+  ;;    (shell . t)))
   (setq org-agenda-dim-blocked-tasks nil)
 
   :custom
-  (org-plantuml-jar-path "/pkg/qct/software/plantuml/1.2023.10/plantuml-1.2023.10.jar")
   (org-directory "~/files/org")
   (org-capture-templates
    '(("t" "todo" entry (file+headline "refile.org" "Tasks")
@@ -42,27 +41,27 @@
    '((sequence "TODO(t)" "DOING(i)" "PENDING(p)" "MEETING(m)" "|" "DONE(d)" "CANCELLED(c)")))
   )
 
-(use-package org-roam
-  :custom
-  (org-roam-directory "~/files/org/roam")
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n g" . org-roam-graph)
-         ("C-c n t" . org-roam-dailies-goto-today)
-         ("C-c n i" . org-roam-node-insert)
-         ("C-c n c" . org-roam-capture)
-         ;; Dailies
-         ("C-c n j" . org-roam-dailies-capture-today))
-  :config
-  ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry
-           "* %?"
-           :target (file+datetree "daily.org" week))))
-  (org-roam-db-autosync-mode)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
+;; (use-package org-roam
+;;   :custom
+;;   (org-roam-directory "~/files/org/roam")
+;;   :bind (("C-c n l" . org-roam-buffer-toggle)
+;;          ("C-c n f" . org-roam-node-find)
+;;          ("C-c n g" . org-roam-graph)
+;;          ("C-c n t" . org-roam-dailies-goto-today)
+;;          ("C-c n i" . org-roam-node-insert)
+;;          ("C-c n c" . org-roam-capture)
+;;          ;; Dailies
+;;          ("C-c n j" . org-roam-dailies-capture-today))
+;;   :config
+;;   ;; If you're using a vertical completion framework, you might want a more informative completion interface
+;;   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+;;   (setq org-roam-dailies-capture-templates
+;;         '(("d" "default" entry
+;;            "* %?"
+;;            :target (file+datetree "daily.org" week))))
+;;   (org-roam-db-autosync-mode)
+;;   ;; If using org-roam-protocol
+;;   (require 'org-roam-protocol))
 
 ;; (use-package org-jira
 ;;   :config

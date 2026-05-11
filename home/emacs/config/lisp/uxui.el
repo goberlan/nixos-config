@@ -1,5 +1,5 @@
 ;(use-package modus-themes
-;  :ensure t
+;  
 ;  :config
 ;  ;; without the "t", it will prompt you if you want to load this theme
 ;  ;; and save it for future sessions
@@ -8,7 +8,7 @@
 ;  )
 
 ;; (use-package olivetti
-;;   :ensure t
+;;   
 ;;   :hook ((prog-mode . olivetti-mode)
 ;;          (magit-mode . olivetti-mode)
 ;;          (help-mode . olivetti-mode)
@@ -27,7 +27,7 @@
 ;;   (setq olivetti-minimum-body-width 120))
 
 ;; (use-package helpful
-;;   :ensure t
+;;   
 ;;   ;; Note that the built-in `describe-function' includes both functions
 ;;   ;; and macros. `helpful-function' is functions only, so we provide
 ;;   ;; `helpful-callable' as a drop-in replacement.
@@ -43,7 +43,7 @@
 ;;    ("C-h v" . helpful-variable)))
 
 (use-package consult
-  :ensure t
+  
   ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings in `mode-specific-map'
          ("C-c M-x" . consult-mode-command)
@@ -163,7 +163,6 @@
   )
 
 (use-package embark
-  :ensure t
   :bind
   (
    ("C-." . embark-act)         ;; pick some comfortable binding
@@ -198,7 +197,7 @@
 
 ;; Consult users will also want the embark-consult package.
 ;; (use-package embark-consult
-;;   :ensure t
+;;   
 ;;   :after (embark consult)
 ;;   :hook
 ;;   (embark-collect-mode . consult-preview-at-point-mode))
@@ -214,20 +213,20 @@
 ;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
 ;; (use-package avy
-;;   :ensure t
+;;   
 ;;   :bind
 ;;   ("C-'" . avy-goto-char)
 ;;   ("C-\"" . avy-goto-char-2))
 
 
 ;; (use-package orderless
-;;   :ensure t
+;;   
 ;;   :custom
 ;;   (completion-styles '(orderless basic))
 ;;   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (use-package vertico
-  :ensure t
+  :demand t
   :config
   (vertico-mode)
   ;; from the github
@@ -246,20 +245,23 @@
 
 ;; (use-package crux)
 ;; ;; Enable rich annotations using the Marginalias package
-;; (use-package marginalia
-;;   ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
-;;   ;; available in the *Completions* buffer, add it to the
-;;   ;; `completion-list-mode-map'.
-;;   :bind (:map minibuffer-local-map
-;; 	      ("M-A" . marginalia-cycle))
+(use-package marginalia
+  :demand t
+  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
+  ;; available in the *Completions* buffer, add it to the
+  ;; `completion-list-mode-map'.
+  :bind (:map minibuffer-local-map
+	      ("M-A" . marginalia-cycle))
 
-;;   ;; The :init section is always executed.
-;;   :init
-;;   ;; Marginalia must be activated in the :init section of use-package such that
-;;   ;; the mode gets enabled right away. Note that this forces loading the
-;;   ;; package.
-;;   (marginalia-mode))
+  ;; The :init section is always executed.
+  :config 
+  ;; Marginalia must be activated in the :init section of use-package such that
+  ;; the mode gets enabled right away. Note that this forces loading the
+  ;; package.
+  (marginalia-mode))
 
-(use-package corfu)
+(use-package corfu
+  :config
+  (corfu-mode))
 
 (provide 'uxui)

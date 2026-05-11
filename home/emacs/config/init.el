@@ -1,6 +1,7 @@
 ;;; -*- lexical-binding: t; -*-
 ;; The 'noerror is for nixos
 (add-to-list 'load-path (expand-file-name "~/.config/emacs/lisp"))
+(setq use-package-always-defer t) 
 (require 'builtins)
 (require 'uxui)
 (require 'git)

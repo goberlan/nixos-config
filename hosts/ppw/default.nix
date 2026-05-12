@@ -28,6 +28,10 @@
 
   powerManagement.powertop.enable = true;
   system.stateVersion = "25.11";
+  # FIX : This was to prevent the key spamming from happening.
+  # Usb keyboard was suspending after 5 seconds and then they key i press to wake
+  # was a key it would spam.
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
   # for touchpad
   services.libinput.enable = true;

@@ -10,14 +10,15 @@
     extraPackages = epkgs: with epkgs; [
       nix-mode
       magit
-      # forge
+      forge
       gptel
-      # olivetti
+      olivetti
       vertico
       marginalia
       embark
-      # embark-consult
-      # orderless
+      embark-consult
+      helpful
+      orderless
       rg
       consult
       corfu

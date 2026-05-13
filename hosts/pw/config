@@ -1,0 +1,27 @@
+Host rs
+     HostName fm1631.rsync.net
+     User fm1631
+Host pws
+     Hostname 192.168.88.119
+     User wj
+     ForwardX11 yes
+     Port 4195
+Host pw
+     Hostname 192.168.88.249
+     User wj
+     Port 4195
+Host pwt
+     Hostname 100.96.255.46
+     User wj
+     Port 4195
+Host pwst
+     Hostname 100.93.143.100
+     User wj
+     ForwardX11 yes
+     Port 4195
+
+Host mbp
+     Hostname 100.99.184.21
+     User wj
+     Port 4195
+     SetEnv TERM=xterm-256color

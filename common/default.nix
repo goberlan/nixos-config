@@ -24,7 +24,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  home-manager.users.wj = import ../../home;
+  home-manager.users.wj = import ../home;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   networking.networkmanager.enable = true;
 
@@ -32,9 +32,9 @@
   programs.firefox.enable = true;
   imports = [
     # Applies to all hosts
-    ../../modules/hyprland.nix
-    ../../modules/audio.nix
-    ../../modules/greetd.nix
+    ../modules/hyprland.nix
+    ../modules/audio.nix
+    ../modules/greetd.nix
   ];
 
   # Enable Bluetooth support

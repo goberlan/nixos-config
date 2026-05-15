@@ -15,6 +15,7 @@
     fd
     fzf
     nixfmt
+    gnumake
     brightnessctl
   ];
 

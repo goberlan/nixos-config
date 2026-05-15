@@ -37,6 +37,7 @@ in
   ];
 
   imports = [
+    ./git.nix
     ./hyprland.nix
     ./waybar.nix
     ./ghostty.nix

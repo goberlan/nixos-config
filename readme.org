@@ -1,0 +1,9 @@
+* How-To:
+git clone https://github.com/goberlan/nixos-config /tmp/nixos-config
+/tmp/nixos-config/disko.sh <hostname>
+/tmp/nixos-config/install.sh <hostname>
+
+
+When it prompts for a root password, you can type "123" (i think... I tried to hit just enter, but it wouldn't let me skip it..)
+Ah! You need to use ~--no-root-passwd~ in the command (which i have added).
+For safety reasons, it's best to keep the root user locked and just use sudo commands.

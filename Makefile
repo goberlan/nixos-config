@@ -8,6 +8,7 @@ NIXUSER ?= wj
 MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 # The name of the nixosConfiguration in the flake
+
 NIXNAME ?= ppw
 
 # SSH options that are used. These aren't meant to be overridden but are
@@ -65,4 +66,16 @@ vm/switch:
 	ssh $(SSH_OPTIONS) -p$(NIXPORT) $(NIXUSER)@$(NIXADDR) " \
 		sudo NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM=1 nixos-rebuild switch --flake \"/nixos-config#${NIXNAME}\" \
 	"
+
+disko:
+	sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount $(MAKEFILE_DIR)/hosts/$(NIXNAME)/disko.nix
+
+install:
+	sudo nixos-install --no-root-passwd --flake $(MAKEFILE_DIR)#$(NIXNAME)
+	@echo "Now that it's installed, we will reboot in 5 seconds. Remember to change password for $(NIXUSER)!"
+	sleep 5
+	reboot
+
+switch:
+	sudo nixos-rebuild switch --flake $(MAKEFILE_DIR)#$(NIXNAME)
 

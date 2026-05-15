@@ -44,5 +44,6 @@ in
     ./bluetooth.nix
     ./audio.nix
     ./sc2.nix
+    ./ssh.nix
   ];
 }

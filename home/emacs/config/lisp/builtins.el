@@ -114,7 +114,6 @@
   ;; (setq indent-tabs-mode nil)
   ;; If this doesn't set the font, you need to prevent emacs from loading ~/.Xresources
   ;; by putting this in your early-init.el: (setq inhibit-x-resources t)
-  ;; (add-to-list 'Info-additional-directory-list "/prj/qct/sve/dragonr2/tools/opt/sles12/share/man")
   ;; This adds font for emacs clients when emacs daemon is used
   ;; (add-to-list 'default-frame-alist '(font . "JetBrainsMonoNL Nerd Font Propo-12"))
   ;; This one loaded faster, but doesn't work for emacsclient when you use emacs daemon

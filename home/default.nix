@@ -43,5 +43,6 @@ in
     ./emacs/default.nix
     ./bluetooth.nix
     ./audio.nix
+    ./sc2.nix
   ];
 }

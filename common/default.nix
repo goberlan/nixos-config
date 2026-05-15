@@ -35,6 +35,7 @@
     ../modules/hyprland.nix
     ../modules/audio.nix
     ../modules/greetd.nix
+    ../modules/wine.nix
   ];
 
   # Enable Bluetooth support

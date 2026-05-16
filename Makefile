@@ -9,7 +9,7 @@ MAKEFILE_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 
 # The name of the nixosConfiguration in the flake
 
-NIXNAME ?= ppw
+NIXNAME ?= pw
 
 # SSH options that are used. These aren't meant to be overridden but are
 # reused a lot so we just store them up here.
@@ -76,7 +76,11 @@ install:
 	sleep 5
 	reboot
 
-rebuild:
+rebuild-ppw:
+	NIXNAME=ppw
+	sudo nixos-rebuild switch --flake $(MAKEFILE_DIR)#$(NIXNAME)
+rebuild-pw:
+	NIXNAME=pw
 	sudo nixos-rebuild switch --flake $(MAKEFILE_DIR)#$(NIXNAME)
 
 # You use this so that your nix will install the correct drivers and such for your hardware

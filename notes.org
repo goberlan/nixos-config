@@ -9,3 +9,42 @@ from this default.nix (in each host) he imports what he wants from the ~common~ 
 Nix treats flakes like objects in programming. When you fetch ~home-manager~ flake, you get access to all the attributse its authors "exported" such as ~lib~ (helper functions) and ~nixosModules~ (integration code)
 
 
+* Flake Parts
+a flake.nix acts as a registry that gathers all your features and registers them as usable modules (nixosModules and homeModules). Then, common/default.nix (or your host configs) pulls from that registry to actually apply settings to a machine.
+
+#+begin_src nix
+  inputs = {
+    # other stuff
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    # other inputs
+    };
+  outputs = inputs @ { flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      imports = [
+        ./features/audio.nix
+        ./features/hyprland.nix
+        ./features/emacs.nix
+        # etc...
+        ];
+
+      flake = {
+        nixosConfigurations = {
+          ppw = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            specialArgs = { inherit niputs; };
+            modules = [
+              ./hosts/ppw/default.nix
+              inputs.disko.nixosModules.disko
+              inputs.home-manager.nioxsModules.home-manager
+              ];
+            };
+          # pw = ...
+          };
+        };
+      }
+
+
+#+end_src
+
+  

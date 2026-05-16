@@ -16,6 +16,7 @@
 
     # this is to get special hardware changes 
     hardware.url = "github:nixos/nixos-hardware";
+    nixos-facter-modules.url = "github:nix-community/nixos-facter-modules";
 
     # TODO: may need overlays at some points
     # Overlays allow you to merge a uniquely defined package over what is in the 25.11 packages. This is incase the 25.11 has bugs and you need to "overlay" the newer version over the default one in pkgs-25.11 release
@@ -42,6 +43,7 @@
     mkHost = hostName: system: nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs hostName; };
       modules = [
+        inputs.nixos-facter-modules.nixosModules.facter
         ./hosts/${hostName}
         inputs.disko.nixosModules.disko
         home-manager.nixosModules.home-manager

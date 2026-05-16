@@ -10,6 +10,8 @@
     ../../common
   ];
 
+  facter.reportPath = ./facter.json;
+
   networking = {
     hostName = "pw";
   };

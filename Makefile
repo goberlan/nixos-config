@@ -76,6 +76,9 @@ install:
 	sleep 5
 	reboot
 
-switch:
+rebuild:
 	sudo nixos-rebuild switch --flake $(MAKEFILE_DIR)#$(NIXNAME)
 
+# You use this so that your nix will install the correct drivers and such for your hardware
+hardware:
+	sudo nix run --option experimental-features "nix-command flakes" nixpkgs#nixos-facter -- -o facter.json

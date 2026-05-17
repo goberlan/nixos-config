@@ -1,4 +1,13 @@
 { pkgs, ... }:
+let
+  getWallpapers = pkgs.writeShellApplication {
+    name = "get-wallpapers";
+    runtimeInputs = [ pkgs.rsync ];
+    text = ''
+      rsync -avz --info=progress2 pws:/home/wj/files/images/wallpapers "$HOME/files/images/wallpapers/"
+    '';
+  };
+in
 {
   # for when it breaks: https://itsohen.github.io/hyprrulefix/ (converter)
   services.hyprpaper = {
@@ -18,7 +27,6 @@
     };
   };
 
-  
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;

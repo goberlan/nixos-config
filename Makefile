@@ -76,11 +76,13 @@ install:
 	sleep 5
 	reboot
 
+# This is called "Target-specific variable". Called target-scoped assignment. It must go on the same line.
+rebuild-ppw: NIXNAME := ppw
 rebuild-ppw:
-	NIXNAME=ppw
 	sudo nixos-rebuild switch --flake $(MAKEFILE_DIR)#$(NIXNAME)
+
+rebuild-pw: NIXNAME = pw
 rebuild-pw:
-	NIXNAME=pw
 	sudo nixos-rebuild switch --flake $(MAKEFILE_DIR)#$(NIXNAME)
 
 # You use this so that your nix will install the correct drivers and such for your hardware

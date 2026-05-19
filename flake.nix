@@ -64,6 +64,12 @@
       pw = mkHost "pw" "x86_64-linux";
       pws = mkHost "pws" "x86_64-linux";
     };
+
+    templates = {
+      rust = {
+        path = ./templates/rust;
+        description = "A basic rust flake template";
+      };
+    };
   };
 }
- 

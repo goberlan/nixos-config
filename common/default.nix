@@ -5,6 +5,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # For framework: Fn + Alt + F11 (hold the Alt key after presssing them)
+  # Useful shortcuts, triggered using Alt+SysRq+<key>:
+  #  h: Print help to the system log.
+  #  f: Trigger the kernel oom killer.
+  #  s: Sync data to disk before triggering the reset options below.
+  #  e: SIGTERM all processes except PID 0.
+  #  i: SIGKILL all processes except PID 0.
+  #  b: Reboot the system.
+  # Check journalctl to see if you are triggering the shortcuts correctly, which might be different for your keyboard, as noted in the Wikipedia page. 
+  boot.kernel.sysctl = {
+    "kernel.sysrq" = 1;
+  };
 
   environment.systemPackages = with pkgs; [
     git

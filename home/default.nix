@@ -46,5 +46,7 @@ in
     ./audio.nix
     ./sc2.nix
     ./ssh.nix
+    ./direnv.nix
+    ./bash.nix
   ];
 }

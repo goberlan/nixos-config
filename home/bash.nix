@@ -1,7 +1,5 @@
 { ... }: {
-#   programs.bash.profileExtra = ''
-#   if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-#     exec Hyprland
-#   fi
-# '';
+  programs.bash = {
+    enable = true;
+  };
 }

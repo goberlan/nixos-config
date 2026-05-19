@@ -13,6 +13,7 @@
       forge
       gptel
       olivetti
+      vterm
       vertico
       marginalia
       embark

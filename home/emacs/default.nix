@@ -17,6 +17,7 @@
       multi-vterm
       vertico
       rustic
+      envrc
       marginalia
       embark
       embark-consult

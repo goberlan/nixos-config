@@ -6,6 +6,8 @@
 ;  ;; (load-theme 'modus-operandi-tinted t)
 ;  (load-theme 'modus-vivendi-tinted t)
 ;  )
+(use-package envrc
+  :hook (after-init . envrc-global-mode))
 
 (use-package olivetti
   :demand t

@@ -14,6 +14,7 @@
       gptel
       olivetti
       vterm
+      multi-vterm
       vertico
       marginalia
       embark

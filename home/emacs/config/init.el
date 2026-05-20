@@ -7,6 +7,7 @@
 (require 'git)
 (require 'organize)
 (require 'nix-config)
+(require 'term-config)
 
 ;; (require 'theme)
 ;; (require 'brain)

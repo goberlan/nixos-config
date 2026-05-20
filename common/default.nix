@@ -26,6 +26,7 @@
     ripgrep
     fd
     fzf
+    zoxide
     nixfmt
     gnumake
     brightnessctl

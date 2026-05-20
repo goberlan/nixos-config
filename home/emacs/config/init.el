@@ -8,7 +8,7 @@
 (require 'organize)
 (require 'nix-config)
 (require 'term-config)
-
+(require 'rust)
 ;; (require 'theme)
 ;; (require 'brain)
 ;; (require 'uxui)

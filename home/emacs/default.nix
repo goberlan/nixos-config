@@ -20,6 +20,7 @@
       envrc
       marginalia
       embark
+      nov
       embark-consult
       helpful
       orderless

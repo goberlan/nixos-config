@@ -10,6 +10,7 @@
 (require 'nix-config)
 (require 'term-config)
 (require 'rust)
+(require 'epub)
 ;; (require 'theme)
 ;; (require 'brain)
 ;; (require 'uxui)

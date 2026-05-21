@@ -26,6 +26,8 @@
     ripgrep
     fd
     fzf
+    unzip
+    zip
     zoxide
     nixfmt
     gnumake
